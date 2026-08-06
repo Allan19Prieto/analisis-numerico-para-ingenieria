@@ -47,7 +47,8 @@ def ejemplo_cuadratica():
 
 ##############################################################################
 
-
+# LOs comentarios de las funciones con la correcta estructura
+# me ayudan a usar help() y ver la documentacion de la funcion, ademas de que me ayuda a entender mejor el codigo
 def cuad(a, b, c):
     """
     Resuelve una ecuación cuadrática.
@@ -120,6 +121,7 @@ def discriminante(a, b, c):
 ##############################################################################
 # Programa principal
 ##############################################################################
-
+# Para tener la funcion principal, el profe quiere que le entregemos resultados de esta forma o como la del empjemplo 2, esta (3)
+# es la mas ordenada....
 if __name__ == "__main__":
     ejemplo_cuadratica()

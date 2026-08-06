@@ -48,8 +48,14 @@ vect = np.array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
 # Obtener el vector columna equivalente.
 vect_trans = np.expand_dims(vect, axis=1)
 
+#print(vect)
+# Para la transpuesta, se puede utilizar la función np.transpose().
+#print(np.transpose(vect_trans))
+
 # Crear un vector desde 1 hasta 100 con incremento de 1.
 vec1 = np.arange(1, 101)
+
+# El profe evalua en el examen
 
 # Crear un vector desde 0 hasta 100 con incremento de 5.
 vec2 = np.arange(0, 101, 5)

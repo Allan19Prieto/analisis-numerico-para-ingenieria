@@ -15,6 +15,9 @@ import scipy.linalg as la
 import scipy.optimize as opt
 
 
+# Todo lo de matrices esta en numpy
+# scipy trae funciones de optimizacion, algebra lineal, etc. que son mas avanzadas que las de numpy
+
 ##############################################################################
 # Funciones matemáticas básicas
 ##############################################################################

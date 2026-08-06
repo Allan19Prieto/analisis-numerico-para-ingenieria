@@ -76,10 +76,15 @@ g = sp.sin(x) / x
 # Calcular el límite cuando x tiende a cero.
 limite = sp.limit(g, x, 0)
 
+# Ellimite se calcula con este comando
+
 
 ##############################################################################
 # Gráfica de una función
 ##############################################################################
+
+# En pyton tenemos que hacer unaadaptacion para graficar ya que no es como octave que es simbolico, en python tenemos que hacer una funcion numerica para graficar
+# usar lambdify para convertir la funcion simbolica en una funcion numerica, y luego graficar con matplotlib
 
 # Convertir la función simbólica en una función numérica.
 g_func = sp.lambdify(x, sp.cos(x) + sp.sin(x), "numpy")
