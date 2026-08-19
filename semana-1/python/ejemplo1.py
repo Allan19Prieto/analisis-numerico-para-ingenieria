@@ -1,14 +1,3 @@
-##############################################################################
-# CE1111: Análisis Numérico para Ingeniería
-# Escuela de Ingeniería en Computadores
-#
-# Archivo de ejemplo para el curso.
-#
-# Autor: Dr. Juan Pablo Soto Quirós
-# Todos los ejemplos de este archivo fueron creados por el autor con fines
-# exclusivamente didácticos para apoyar el proceso de enseñanza y
-# aprendizaje del curso CE1111: Análisis Numérico para Ingeniería.
-##############################################################################
 
 import numpy as np
 
@@ -73,6 +62,7 @@ vec4 = np.zeros(10)
 # Almacenar potencias de 2 utilizando un ciclo for.
 for k in range(1, 10):
     vec4[k] = 2**k
+print(vec4)
 
 ##############################################################################
 # Ciclo while

@@ -1,14 +1,3 @@
-##############################################################################
-# CE1111: Análisis Numérico para Ingeniería
-# Escuela de Ingeniería en Computadores
-#
-# Archivo de ejemplo para el curso.
-#
-# Autor: Dr. Juan Pablo Soto Quirós
-# Todos los ejemplos de este archivo fueron creados por el autor con fines
-# exclusivamente didácticos para apoyar el proceso de enseñanza y
-# aprendizaje del curso CE1111: Análisis Numérico para Ingeniería.
-##############################################################################
 
 import math
 
