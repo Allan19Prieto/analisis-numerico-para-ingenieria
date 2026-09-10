@@ -24,9 +24,11 @@ y = np.sin(5)
 
 # Generar una matriz cuadrada aleatoria de tamaño 4x4.
 A = np.random.rand(4, 4)
+print(A)
 
 # Calcular la inversa de la matriz A.
 Ainv = np.linalg.inv(A)
+print(Ainv)
 
 # Verificar que A multiplicada por su inversa es aproximadamente
 # la matriz identidad.
@@ -45,11 +47,15 @@ A = np.array([[5, 1, 0],
               [1, 5, 1],
               [0, 1, 5]])
 
+print(A)
+
 # Definir el vector del lado derecho.
 b = np.array([-6, -7, -6])
+print(b)
 
 # Resolver el sistema de ecuaciones A*x = b.
 x = np.linalg.solve(A, b)
+print(x)
 
 
 ##############################################################################
@@ -87,10 +93,12 @@ def fun(x):
 ##############################################################################
 
 # Definir un valor inicial.
-x0 = 3
+x0 = 5
 
 # Calcular el punto donde la función alcanza un mínimo local.
 xsol = opt.fmin(fun, x0, disp=False)
+print("Mínimo local de la función f(x) = e^x - 2x - 10:")
+print(xsol)
 
 
 ##############################################################################
@@ -102,6 +110,8 @@ x0 = -4
 
 # Calcular una solución de la ecuación f(x) = 0.
 xsol_root = opt.fsolve(fun, x0)
+print("Solución de la ecuación f(x) = 0:")
+print(xsol_root)
 
 
 ##############################################################################
@@ -114,6 +124,8 @@ b = 2
 
 # Calcular el mínimo de la función en el intervalo [a,b].
 xmin = opt.fminbound(fun, a, b)
+print("Mínimo de la función f(x) = e^x - 2x - 10 en el intervalo [-2,2]:")
+print(xmin)
 
 
 ##############################################################################

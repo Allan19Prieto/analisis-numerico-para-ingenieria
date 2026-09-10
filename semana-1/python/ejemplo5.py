@@ -19,9 +19,11 @@ x = sp.symbols("x")
 # Definir dos expresiones simbólicas.
 a = sp.sin(x)
 b = sp.cos(x)
+print(a**2 + b**2)  # Imprime sin^2(x) + cos^2(x)
 
 # Simplificar la expresión.
 y = sp.simplify(a**2 + b**2)
+print(y)  # Imprime 1, ya que sin^2(x) + cos^2(x) = 1
 
 
 ##############################################################################

@@ -26,14 +26,14 @@ function [xk,k,erk,conv]=nr(f,x0,tol,iterMax)
    % Funcion numerica
   fn=str2func(['@(x)' f]); %f(x) numerico
 
-  % Funcion simbolica
+  % Funcion simbolica - de texto a simbolica
   fs=sym(f);
 
   % Derivada simbolica
-  fsD=diff(fs);
+  fsD = diff(fs);
 
 
-  fnD=function_handle(fsD); %f'(x) numerico
+  fnD=matlabFunction(fsD); %f'(x) numerico
 
   xk=x0;
   k=0;
