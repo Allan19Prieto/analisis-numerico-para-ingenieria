@@ -1,33 +1,31 @@
-function secante ()
+function steffensen ()
     clc; clear;
 
     f = 'exp(x)-2*x-10';
     x0=2;
-    x1=4;
     tol = 1e-10;
     iterMax = 1000;
 
-    disp('---- Secante ----')
+    disp('---- Steffenen ----')
     tic
-    [xk,k,erk,conv]=sec(f,x0,x1,tol,iterMax)
+    [xk,k,erk,conv]=stff(f,x0,tol,iterMax)
     t1=toc
 end
 
-function [xk,k,erk,conv]=sec(f,x0,x1,tol,iterMax)
+function [xk,k,erk,conv]=stff(f,x0,tol,iterMax)
   fn = str2func(['@(x)' f]);
   k = 0;
-  erk = abs(fn(x1));
+  erk = abs(fn(x0));
   while (k<iterMax && erk>tol)
     k = k + 1;
-    xk = x1 - fn(x1)*(x1-x0)/(fn(x1)-fn(x0));
-    x0 = x1;
-    x1 = xk;
+    xk = x0 - (fn(x0)^2)/(fn(x0+fn(x0))-fn(x0));
+    x0 = xk;
     erk = abs(fn(xk));
   endwhile
 
   if k==iterMax
     conv = 'NO converge';
   else
-    conv = 'Si Converge';
+    conv = 'Converge';
   endif
 end
