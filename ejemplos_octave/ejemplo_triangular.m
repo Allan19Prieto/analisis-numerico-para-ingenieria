@@ -19,5 +19,4 @@ function x=sust_atras(A,b)
     endfor
     x(i)=(1/A(i,i))*(b(i)-aux);
   endfor
-
 end
