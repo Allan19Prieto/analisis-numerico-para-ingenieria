@@ -1,0 +1,85 @@
+BLOQUE 3 - PARTE III COMPLETA
+
+ARCHIVOS
+parte3.py: pasos 1 al 8, evaluación de las 40 pruebas e informe automático.
+parte1.py: los métodos QR y Jacobi de la Parte I, sin cambios.
+requirements.txt: dependencias.
+
+PREPARACIÓN
+1. Descomprima este paquete.
+2. Coloque su carpeta dataset junto a parte3.py y parte1.py.
+   Las rutas deben ser dataset/s1/1.png ... dataset/s40/10.png.
+   No use una carpeta adicional entre dataset y s1.
+3. Abra una terminal en la carpeta del programa.
+4. Instale las dependencias:
+   python -m pip install -r requirements.txt
+5. Ejecute:
+   python parte3.py --grupo "Su grupo" --integrantes "Escriba aquí los nombres completos"
+
+Si su carpeta tiene otro nombre o está en otra ubicación:
+   python parte3.py --dataset "C:/ruta/dataset"
+También se acepta una ruta relativa, por ejemplo --dataset "dataset_att".
+Las imágenes deben tener 56 filas y 46 columnas. El programa no las reduce,
+recorta ni cambia de resolución. Si tienen 112 x 92, use la distribución del
+curso que indica 56 x 46.
+
+QUÉ GENERA
+En la carpeta resultados_parte3:
+- resultados.docx: informe editable en Word con método elegido, promedio, primeras seis caras,
+  r, k, variación, tabla de 40 predicciones, aciertos, exactitud, comparaciones
+  visuales de todas las personas y análisis de las confusiones observadas.
+- resultados.txt: resultados y análisis que también aparecen en la terminal.
+- metricas.json: cifras y predicciones en formato estructurado.
+- modelo.npz: modelo reutilizable calculado exclusivamente con entrenamiento.
+- figuras/01_promedio_y_caras.png
+- figuras/02_variacion.png
+- figuras/comparaciones_01_10.png y los otros tres grupos hasta la persona 40.
+
+A solicitud del estudiante, el informe se genera en Word como resultados.docx.
+Puede editarlo y, si el curso requiere PDF, exportarlo desde Word. Antes de entregar,
+revise sus datos de integrantes, las imágenes, las confusiones y el análisis.
+El informe se genera al ejecutar sus fotografías; no se incluyen resultados
+inventados ni resultados de los datos sintéticos usados para probar el programa.
+
+TIEMPO DE CÁLCULO
+Se construye exactamente G = A @ A.T, de tamaño 2576 x 2576, y se llama a
+jacobi_valores_propios de parte1.py con iterMax=1000000 y tol=1e-5.
+No se usa eig, eigh, SVD ni la matriz reducida A.T @ A como sustitución.
+
+La versión didáctica de Jacobi puede tardar horas en esta dimensión, según
+su equipo. Cada barrido visita 3316600 pares; no compare ese trabajo con
+los 11 barridos de la matriz pequeña de la Parte II. El programa informa
+cada 30 segundos que el cálculo sigue activo, sin inventar un porcentaje.
+No se ha medido el tiempo ni la exactitud de su dataset en este entorno:
+las imágenes reales están en su computadora.
+
+Cuando termina el entrenamiento se guarda modelo.npz. Las ejecuciones
+posteriores reutilizan ese modelo si las fotos de entrenamiento, el código
+y los parámetros son iguales. Así puede cambiar integrantes o volver a
+generar el Word sin recalcular Jacobi. Para forzar un nuevo entrenamiento:
+   python parte3.py --reentrenar
+La caché se guarda al terminar, no entre barridos. Si interrumpe el cálculo
+antes de que se guarde, el entrenamiento debe comenzar de nuevo.
+
+SEPARACIÓN DE DATOS
+- Entrenamiento: 1.png a 9.png de cada persona, 360 fotografías.
+- Prueba: 10.png de cada persona, 40 fotografías.
+- Las imágenes se normalizan entre 0 y 1 y se vectorizan por columnas.
+- El promedio y las caras base se calculan solo con entrenamiento.
+- Se retienen lambda_j > 1e-10 * lambda_1.
+- k se calcula con el mínimo número que conserva al menos 95% de la
+  variación retenida. No se fija en 176 ni se ajusta según las pruebas.
+- Se compara contra las 360 imágenes de entrenamiento. Un empate exacto
+  selecciona la primera según el orden persona/fotografía.
+- La etiqueta real se usa solamente para evaluar después de predecir.
+
+NOTAS NUMÉRICAS
+conv=1 comprueba el cambio entre valores propios; no sustituye los residuos.
+El informe incluye residuos y ortogonalidad de las caras retenidas. Si hay
+avisos numéricos, revíselos antes de interpretar la exactitud. Si Jacobi no
+converge, el programa se detiene y no presenta un modelo como convergente.
+El 95% de variación conservada no significa 95% de aciertos.
+
+La selección de Jacobi cita la ejecución de referencia de la Parte II.
+Si usted obtuvo cifras diferentes en su equipo, puede ajustar el texto
+JUSTIFICACION al inicio de parte3.py para reflejar sus propias mediciones.
