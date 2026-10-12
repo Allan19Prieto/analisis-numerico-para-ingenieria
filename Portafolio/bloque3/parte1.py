@@ -1,22 +1,5 @@
-"""Portafolio computacional, bloque 3, parte I.
-
-Métodos QR sin desplazamiento y Jacobi cíclico para matrices reales
-simétricas semidefinidas positivas. No se verifican esas propiedades,
-según el enunciado. Requiere NumPy.
-
-Ambas funciones reciben A, iterMax (entero positivo) y tol (positiva).
-Retornan (valores, V, erk, k, conv): valores en orden descendente,
-vectores normalizados por columnas, cambio entre valores consecutivos,
-iteraciones y cumplimiento del criterio erk < tol.
-
-QR: una iteración es una factorización y actualización R @ Q.
-Jacobi: una iteración es un barrido completo por los pares p < q.
-El criterio de parada no sustituye la comprobación externa de residuos.
-Este módulo no ejecuta ejemplos ni imprime resultados al importarse.
-"""
 
 import numpy as np
-
 
 def qr_valores_propios(A, iterMax, tol):
     """Aproxima pares propios mediante iteración QR sin desplazamiento."""
@@ -30,12 +13,12 @@ def qr_valores_propios(A, iterMax, tol):
 
     for k in range(1, iterMax + 1):
         anteriores = valores.copy()
-        # La factorización QR de biblioteca está permitida por el enunciado.
+        # factorización QR 
         Q, R = np.linalg.qr(B)
         B = R @ Q
         V = V @ Q
 
-        # Ordenar solo la copia usada para comparar aproximaciones.
+        # Ordenar solo la copia usada para comparar aproximaciones
         valores = np.sort(np.diag(B))[::-1]
         erk = np.linalg.norm(valores - anteriores)
         if erk < tol:
@@ -52,12 +35,7 @@ def qr_valores_propios(A, iterMax, tol):
 
 
 def jacobi_valores_propios(A, iterMax, tol):
-    """Aproxima pares propios por Jacobi cíclico; k cuenta barridos.
-
-    La rotación usa el bloque J = [[c, s], [-s, c]], de modo que
-    B_nueva = J.T @ B @ J y V_nueva = V @ J. Solo se actualizan
-    las filas y columnas afectadas, sin construir J explícitamente.
-    """
+    """Aproxima pares propios mediante el método de Jacobi."""
     B = np.array(A, dtype=float, copy=True)
     n = B.shape[0]
     V = np.eye(n)

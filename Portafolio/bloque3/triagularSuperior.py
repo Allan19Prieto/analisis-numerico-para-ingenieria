@@ -34,4 +34,3 @@ def ejemplo_triangular():
 
 if __name__ == "__main__":
     ejemplo_triangular()
-

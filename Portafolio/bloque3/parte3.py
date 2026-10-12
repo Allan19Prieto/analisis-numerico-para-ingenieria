@@ -1,13 +1,3 @@
-"""Bloque 3, Parte III: reconocimiento facial por valores propios.
-
-Ejecutar: python parte3.py
-Carpeta esperada: dataset/s1/1.png ... dataset/s40/10.png junto al script.
-Pasos 1-7: entrenamiento SOLO con 1.png ... 9.png de cada persona.
-Paso 8: prueba con 10.png, sin recalcular promedio, caras base ni k.
-El algoritmo de Jacobi se importa de parte1.py; no se reimplementa aquí.
-Se construye G = A @ A.T de orden 2576, como exige la guía.
-"""
-
 import argparse
 import hashlib
 import json

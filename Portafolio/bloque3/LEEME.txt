@@ -11,8 +11,13 @@ PREPARACIÓN
    Las rutas deben ser dataset/s1/1.png ... dataset/s40/10.png.
    No use una carpeta adicional entre dataset y s1.
 3. Abra una terminal en la carpeta del programa.
-4. Instale las dependencias:
+4. Cree y active un entorno virtual e instale las dependencias (Linux/macOS):
+   python3 -m venv .venv
+   source .venv/bin/activate
    python -m pip install -r requirements.txt
+   En Windows, cree el entorno con python -m venv .venv y actívelo con
+   .venv\Scripts\activate (cmd) o .venv\Scripts\Activate.ps1 (PowerShell).
+   En nuevas terminales, active nuevamente el entorno antes de ejecutar.
 5. Ejecute:
    python parte3.py --grupo "Su grupo" --integrantes "Escriba aquí los nombres completos"
 

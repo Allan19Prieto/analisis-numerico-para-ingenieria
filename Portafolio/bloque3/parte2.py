@@ -1,14 +1,3 @@
-"""Bloque 3 - Parte II: comparación de valores y vectores propios.
-
-Coloque este archivo junto a parte1.py.
-Instalación: python -m pip install numpy matplotlib
-Ejecución:   python parte2.py
-Sin abrir ventanas: python parte2.py --sin-ventanas
-
-Se muestran los 200 valores, las matrices V completas y los 200 residuos.
-La misma salida se guarda en resultados_parte2/resultados.txt, junto con
-las gráficas. Las mediciones excluyen impresión, validación y gráficas.
-"""
 
 import argparse
 from pathlib import Path
@@ -74,8 +63,8 @@ def construir_analisis(resultados, tol, iterMax):
                 'Su resultado debe interpretarse como la aproximación al agotar el límite.'
             )
 
-    # Esta comprobación compara los dos resultados a la escala solicitada;
-    # no reemplaza el criterio de parada ni la validación de cada par propio.
+    # comparar los dos resultados;
+
     if diferencia < tol:
         lineas.append("Los dos espectros coinciden entre sí dentro de la tolerancia absoluta solicitada.")
     else:
@@ -172,8 +161,8 @@ def generar_graficas(resultados, carpeta, plt):
         ax.bar(nombres, datos, color=colores, width=0.5, zorder=3)
         positivos = datos[datos > 0]
         escala = "lineal"
+        
         # Usar log cuando las magnitudes difieren mucho. Si hay cero,
-        # symlog lo representa sin reemplazarlo por un dato inventado.
         if len(positivos) == len(datos) and max(datos) / min(datos) >= 100:
             ax.set_yscale("log")
             escala = "logarítmica"
@@ -212,7 +201,7 @@ def main():
     n = 200
     iterMax = 10000
     tol = 1e-8
-    # Generar A directamente: diagonal 4 y diagonales adyacentes -1.
+    # Matriz A directamente: diagonal 4 y lados con -1
     A = 4.0 * np.eye(n) - np.diag(np.ones(n - 1), 1) - np.diag(np.ones(n - 1), -1)
     carpeta = Path(__file__).resolve().parent / "resultados_parte2"
     carpeta.mkdir(exist_ok=True)
